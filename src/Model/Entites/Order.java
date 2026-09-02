@@ -66,4 +66,12 @@ public class Order {
     public void removeTickets(Ticket ticket) {
         tickets.add(ticket);
     }
+
+    public Double total() {
+        double sum = 0;
+        for (Ticket t: tickets) {
+            sum += t.price();
+        }
+        return sum;
+    }
 }
