@@ -1,24 +1,15 @@
 package Model.Entites;
 
-public class StandardTicket extends Ticket {
+import java.util.Date;
 
-    private String studentCardId;
+public class StandardTicket extends Ticket {
 
     public StandardTicket() {
         super();
     }
 
-    public StandardTicket(Integer id, Event event, String studentCardId) {
+    public StandardTicket(Integer id, Event event) {
         super(id, event);
-        this.studentCardId = studentCardId;
-    }
-
-    public String getStudentCardId() {
-        return studentCardId;
-    }
-
-    public void setStudentCardId(String studentCardId) {
-        this.studentCardId = studentCardId;
     }
 
     @Override

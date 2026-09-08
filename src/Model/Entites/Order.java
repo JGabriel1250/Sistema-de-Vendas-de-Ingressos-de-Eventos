@@ -74,4 +74,20 @@ public class Order {
         }
         return sum;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order moment: ").append(getMoment()).append("\n");
+        sb.append("Order status: ").append(getStatus()).append("\n");
+        sb.append("Client: ").append(getClient().getName())
+                .append(" (").append(getClient().getEmail()).append(")").append("\n");
+        sb.append("Order items:\n");
+        for (Ticket ticket: tickets) {
+            sb.append("- ").append(ticket).append("\n");
+        }
+        sb.append("Total price: $ ").append(String.format("%.2f", total()));
+
+        return sb.toString();
+    }
 }

@@ -23,7 +23,13 @@ public class VipTicket extends Ticket {
 
     @Override
     public Double price() {
-        vipFeeRate = 1.50;
         return getEvent().getBasePrice() * vipFeeRate;
+    }
+
+    @Override
+    public String toString() {
+        return getEvent().getName()
+                + "(VIP TICKET): "
+                + price() + "\n";
     }
 }
