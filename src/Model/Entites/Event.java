@@ -1,17 +1,20 @@
 package Model.Entites;
 
+import Model.exceptions.DomainException;
+
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Event {
     private String name;
-    private Date ldTime;
+    private LocalDateTime ldTime;
     private int capacity;
     private double basePrice;
 
     public Event() {
     }
 
-    public Event(String name, Date ldTime, int capacity, double basePrice) {
+    public Event(String name, LocalDateTime ldTime, int capacity, double basePrice) {
         this.name = name;
         this.ldTime = ldTime;
         this.capacity = capacity;
@@ -26,11 +29,11 @@ public class Event {
         this.name = name;
     }
 
-    public Date getLdTime() {
+    public LocalDateTime getLdTime() {
         return ldTime;
     }
 
-    public void setLdTime(Date ldTime) {
+    public void setLdTime(LocalDateTime ldTime) {
         this.ldTime = ldTime;
     }
 
@@ -48,5 +51,11 @@ public class Event {
 
     public void setBasePrice(double basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public void validateCapacity(int qtdIngressos) {
+        if (qtdIngressos > capacity) {
+            throw new DomainException("The number of tickets exceeds the event capacity.");
+        }
     }
 }
