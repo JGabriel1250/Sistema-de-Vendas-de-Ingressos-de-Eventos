@@ -1,6 +1,4 @@
-package Model.Entites;
-
-import java.util.Date;
+package model.entities;
 
 public class StandardTicket extends Ticket {
 
@@ -15,5 +13,12 @@ public class StandardTicket extends Ticket {
     @Override
     public Double price() {
         return getEvent().getBasePrice();
+    }
+
+    @Override
+    public String toString() {
+        return getEvent().getName()
+                + "(STANDARD TICKET): $"
+                + String.format("%.2f", price());
     }
 }

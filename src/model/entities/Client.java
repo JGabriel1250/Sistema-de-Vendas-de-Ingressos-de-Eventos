@@ -1,4 +1,4 @@
-package Model.Entites;
+package model.entities;
 
 public class Client {
     private String name;
@@ -8,10 +8,10 @@ public class Client {
     public Client() {
     }
 
-    public Client(String cpf, String email, String name) {
-        this.cpf = cpf;
-        this.email = email;
+    public Client(String name, String email, String cpf) {
         this.name = name;
+        this.email = email;
+        this.cpf = cpf;
     }
 
     public String getName() {

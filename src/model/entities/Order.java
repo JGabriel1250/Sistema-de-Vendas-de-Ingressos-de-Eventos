@@ -1,12 +1,17 @@
-package Model.Entites;
+package model.entities;
 
-import Model.Enums.OrderStatus;
+import model.enums.OrderStatus;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
+
+    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
     private Integer id;
     private LocalDateTime moment;
     private OrderStatus status;
@@ -64,7 +69,7 @@ public class Order {
     }
 
     public void removeTickets(Ticket ticket) {
-        tickets.add(ticket);
+        tickets.remove(ticket);
     }
 
     public Double total() {
@@ -78,7 +83,7 @@ public class Order {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Order moment: ").append(getMoment()).append("\n");
+        sb.append("Order moment: ").append(moment.format(fmt)).append("\n");
         sb.append("Order status: ").append(getStatus()).append("\n");
         sb.append("Client: ").append(getClient().getName())
                 .append(" (").append(getClient().getEmail()).append(")").append("\n");

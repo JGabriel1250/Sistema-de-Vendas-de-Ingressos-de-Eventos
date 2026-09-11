@@ -1,9 +1,9 @@
-package Application;
+package application;
 
-import Model.Entites.*;
-import Model.Enums.OrderStatus;
+import model.entities.*;
+import model.enums.OrderStatus;
+import model.exceptions.DomainException;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -51,16 +51,22 @@ public class Main {
                 String ticket = sc.nextLine().toUpperCase();
 
                 Event event = new Event(eventName, date, capacity, basePrice);
+                event.validateCapacity(N);
 
+                Ticket t = null;
                 if (ticket.charAt(0) == 'S') {
-                    order.addTicket(new StandardTicket(1, event));
+                    t = new StandardTicket(1, event);
                 } else if (ticket.charAt(0) == 'V') {
-                    order.addTicket(new VipTicket(1, event, 1.50));
+                    t = new VipTicket(1, event, 1.50);
                 } else if (ticket.charAt(0) == 'T') {
                     System.out.println("Student card number: ");
                     String cardStudent = sc.nextLine();
-                    order.addTicket(new StudentTicket(1, event, cardStudent));
+                    t = new StudentTicket(1, event, cardStudent);
                 }
+
+                t.validateDate();
+
+                order.addTicket(t);
             }
 
             System.out.println("ORDER SUMMARY:");
@@ -70,6 +76,10 @@ public class Main {
             sc.nextLine(); // limpa o buffer para evitar loop infinito
         } catch (DateTimeParseException e) {
             System.out.println("Invalid date format: please use dd/MM/yyyy HH:mm.");
+        } catch (DomainException e) {
+            System.out.println("Error: " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid argument: please check your input.");
         }
 
 

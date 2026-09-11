@@ -1,9 +1,8 @@
-package Model.Entites;
+package model.entities;
 
-import Model.exceptions.DomainException;
+import model.exceptions.DomainException;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public abstract class Ticket {
     private Integer id;
@@ -36,7 +35,7 @@ public abstract class Ticket {
     public abstract Double price();
 
     public void validateDate() {
-        if (event.getLdTime().Isbefore(LocalDateTime.now())) {
+        if (event.getLdTime().isBefore(LocalDateTime.now())) {
             throw new DomainException("Tickets cannot be sold for an event that has already occurred.");
         }
     }

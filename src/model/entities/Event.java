@@ -1,9 +1,8 @@
-package Model.Entites;
+package model.entities;
 
-import Model.exceptions.DomainException;
+import model.exceptions.DomainException;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Event {
     private String name;

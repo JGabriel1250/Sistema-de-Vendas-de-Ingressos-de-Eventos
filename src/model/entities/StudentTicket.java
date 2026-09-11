@@ -1,4 +1,4 @@
-package Model.Entites;
+package model.entities;
 
 public class StudentTicket extends Ticket {
     private String studentCardId;
@@ -24,6 +24,13 @@ public class StudentTicket extends Ticket {
     public Double price() {
         double taxa = 0.50;
         return getEvent().getBasePrice() * taxa;
+    }
+
+    @Override
+    public String toString() {
+        return getEvent().getName()
+                + "(STUDENT TICKET): $"
+                + String.format("%.2f", price());
     }
 
 

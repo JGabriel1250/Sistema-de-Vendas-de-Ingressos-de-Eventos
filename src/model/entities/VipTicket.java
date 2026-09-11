@@ -1,4 +1,4 @@
-package Model.Entites;
+package model.entities;
 
 public class VipTicket extends Ticket {
 
@@ -29,7 +29,7 @@ public class VipTicket extends Ticket {
     @Override
     public String toString() {
         return getEvent().getName()
-                + "(VIP TICKET): "
-                + price() + "\n";
+                + "(VIP TICKET): $"
+                + String.format("%.2f", price());
     }
 }
